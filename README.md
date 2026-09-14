@@ -153,19 +153,19 @@ Language configuration is centralized in `lib/constants.js`.
 
 ```mermaid
 flowchart TD
-    A[Citizen] --> B{Select Language}
+    A["Citizen"] --> B{"Select Language"}
 
-    B -->|English| C[English AI Flow]
-    B -->|Hindi| D[Hindi AI Flow]
-    B -->|Telugu| E[Telugu AI Flow]
+    B -->|English| C["English AI Flow"]
+    B -->|Hindi| D["Hindi AI Flow"]
+    B -->|Telugu| E["Telugu AI Flow"]
 
-    C --> F[AI Complaint Officer]
+    C --> F["AI Complaint Officer"]
     D --> F
     E --> F
 
-    F --> G[Structured Complaint Data]
-    G --> H[Complaint Submission]
-    H --> I[SQLite Database]
+    F --> G["Structured Complaint Data"]
+    G --> H["Complaint Submission"]
+    H --> I["SQLite Database"]
 ```
 
 The same complaint workflow is reused across all three supported languages.
@@ -176,22 +176,22 @@ The same complaint workflow is reused across all three supported languages.
 
 ```mermaid
 flowchart LR
-    U[Citizen Browser]
+    U["Citizen Browser"]
 
     subgraph NEXT[Next.js 14 Application]
-        L[Login / Registration]
-        C[Citizen Portal]
-        AI[AI Chat Interface]
-        T[Complaint Tracking]
-        A[Admin Interface]
-        API[Next.js API Routes]
+        L["Login / Registration"]
+        C["Citizen Portal"]
+        AI["AI Chat Interface"]
+        T["Complaint Tracking"]
+        A["Admin Interface"]
+        API["Next.js API Routes"]
     end
 
     subgraph SERVICES[Application Services]
-        CLAUDE[Anthropic Claude API]
-        AUTH[JWT + bcryptjs]
-        DB[better-sqlite3]
-        SPEECH[Browser Web Speech APIs]
+        CLAUDE["Anthropic Claude API"]
+        AUTH["JWT + bcryptjs"]
+        DB["better-sqlite3"]
+        SPEECH["Browser Web Speech APIs"]
     end
 
     U --> L
@@ -273,18 +273,18 @@ Conceptually:
 
 ```mermaid
 flowchart TD
-    A[Conversation History] --> B[/api/chat]
-    B --> C[Claude]
-    C --> D[AI Response]
+    A["Conversation History"] --> B["/api/chat"]
+    B --> C["Claude"]
+    C --> D["AI Response"]
 
-    D --> E{COMPLAINT_JSON present?}
+    D --> E{"COMPLAINT_JSON present?"}
 
-    E -->|No| F[Return normal response]
-    E -->|Yes| G[Parse JSON]
-    G --> H[Return message + complaintData]
+    E -->|No| F["Return normal response"]
+    E -->|Yes| G["Parse JSON"]
+    G --> H["Return message + complaintData"]
 
-    H --> I[Complaint Summary]
-    I --> J[Citizen Submission]
+    H --> I["Complaint Summary"]
+    I --> J["Citizen Submission"]
 ```
 
 ---
@@ -383,13 +383,13 @@ The tracking flow:
 
 ```mermaid
 flowchart LR
-    A[Complaint ID] --> B[/track]
-    B --> C[GET /api/complaints/:id]
-    C --> D{Complaint Found?}
-    D -->|No| E[Show Error]
-    D -->|Yes| F[Return Safe Complaint View]
-    F --> G[Status + Complaint Details]
-    G --> H[Status Progress Timeline]
+    A["Complaint ID"] --> B["/track"]
+    B --> C["GET /api/complaints/:id"]
+    C --> D{"Complaint Found?"}
+    D -->|No| E["Show Error"]
+    D -->|Yes| F["Return Safe Complaint View"]
+    F --> G["Status + Complaint Details"]
+    G --> H["Status Progress Timeline"]
 ```
 
 For public tracking, sensitive administrative fields such as:
@@ -872,23 +872,23 @@ http://localhost:3000
 
 ```mermaid
 flowchart TD
-    A[Open Voice2Justice] --> B[Login / Register]
-    B --> C[Citizen Portal]
+    A["Open Voice2Justice"] --> B["Login / Register"]
+    B --> C["Citizen Portal"]
 
-    C --> D{Choose Action}
+    C --> D{"Choose Action"}
 
-    D -->|File Complaint| E[Select Language]
-    E --> F[Open AI Chat]
-    F --> G[Type or Speak]
-    G --> H[AI Collects 7 Fields]
-    H --> I[Complaint Summary]
-    I --> J[Submit Complaint]
-    J --> K[Generate Complaint ID]
-    K --> L[Track Complaint]
+    D -->|File Complaint| E["Select Language"]
+    E --> F["Open AI Chat"]
+    F --> G["Type or Speak"]
+    G --> H["AI Collects 7 Fields"]
+    H --> I["Complaint Summary"]
+    I --> J["Submit Complaint"]
+    J --> K["Generate Complaint ID"]
+    K --> L["Track Complaint"]
 
     D -->|Track Complaint| L
 
-    L --> M[View Current Status]
+    L --> M["View Current Status"]
 ```
 
 ---
@@ -897,22 +897,22 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A[Admin Login] --> B[JWT Authentication]
-    B --> C[Admin Dashboard]
+    A["Admin Login"] --> B["JWT Authentication"]
+    B --> C["Admin Dashboard"]
 
-    C --> D[View Statistics]
-    C --> E[Open Complaints]
-    E --> F[Search / Filter]
-    F --> G[Open Complaint]
+    C --> D["View Statistics"]
+    C --> E["Open Complaints"]
+    E --> F["Search / Filter"]
+    F --> G["Open Complaint"]
 
-    G --> H[Review Incident]
-    H --> I[Set Priority]
-    H --> J[Assign Officer]
-    H --> K[Add Officer Notes]
-    H --> L[Update Status]
+    G --> H["Review Incident"]
+    H --> I["Set Priority"]
+    H --> J["Assign Officer"]
+    H --> K["Add Officer Notes"]
+    H --> L["Update Status"]
 
-    L --> M[Status History]
-    M --> N[Citizen Tracking View]
+    L --> M["Status History"]
+    M --> N["Citizen Tracking View"]
 ```
 
 ---
