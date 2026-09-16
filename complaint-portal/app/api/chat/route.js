@@ -18,8 +18,14 @@ export async function POST(request) {
 
     // Filter to only user/assistant messages for API
     const apiMessages = messages
-      .filter(m => m.role === 'user' || m.role === 'assistant')
-      .map(m => ({ role: m.role, content: m.content }));
+  .filter(m => m.role === 'user' || m.role === 'assistant')
+  .map(m => ({ role: m.role, content: m.content }));
+
+// Claude expects the conversation to begin with a user message.
+// The initial assistant greeting is only a UI message.
+if (apiMessages[0]?.role === 'assistant') {
+  apiMessages.shift();
+}
 
     const response = await client.messages.create({
       model: 'claude-sonnet-4-6',
