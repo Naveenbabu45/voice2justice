@@ -6,11 +6,12 @@ export function middleware(request) {
 
   // Protect admin API routes (except auth login)
   if (
-    pathname.startsWith('/api/') &&
-    !pathname.startsWith('/api/auth') &&
-    !pathname.startsWith('/api/chat') &&
-    pathname !== '/api/complaints' // POST is public; GET is protected inside handler
-  ) {
+  pathname.startsWith('/api/') &&
+  !pathname.startsWith('/api/auth') &&
+  !pathname.startsWith('/api/chat') &&
+  !pathname.startsWith('/api/users') &&
+  pathname !== '/api/complaints'
+) {
     const authHeader = request.headers.get('Authorization');
     const cookie     = request.headers.get('cookie') || '';
     const cookieToken = cookie.match(/admin_token=([^;]+)/)?.[1];
