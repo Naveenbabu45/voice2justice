@@ -10,7 +10,8 @@ export function middleware(request) {
   !pathname.startsWith('/api/auth') &&
   !pathname.startsWith('/api/chat') &&
   !pathname.startsWith('/api/users') &&
-  pathname !== '/api/complaints'
+  !pathname.startsWith('/api/users') &&
+   pathname !== '/api/complaints'
 ) {
     const authHeader = request.headers.get('Authorization');
     const cookie     = request.headers.get('cookie') || '';
