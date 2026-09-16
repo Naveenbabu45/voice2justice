@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gold: #d4af37;
+  --gold-dark: #b8962e;
+  --navy: #0a0e1a;
+  --navy-mid: #111827;
+  --navy-light: #1a2035;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+
+/* Typography */
+.font-cinzel { font-family: 'Cinzel', serif; }
+.font-crimson { font-family: 'Crimson Pro', serif; }
+
+/* Animations */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes dotPulse {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+@keyframes shimmer {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+.animate-fade-in { animation: fadeIn 0.5s ease forwards; }
+.animate-slide-up { animation: slideUp 0.4s ease forwards; }
+.animate-msg-in { animation: msgIn 0.3s ease forwards; }
+.animate-spin-slow { animation: spin 20s linear infinite; }
+
+/* Dot pulse for typing indicator */
+.dot-pulse { display: flex; align-items: center; gap: 4px; }
+.dot-pulse span {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold); display: inline-block;
+  animation: dotPulse 1.4s infinite;
+}
+.dot-pulse span:nth-child(2) { animation-delay: 0.2s; }
+.dot-pulse span:nth-child(3) { animation-delay: 0.4s; }
+
+/* Gold shimmer background */
+.shimmer-bg {
+  background: linear-gradient(90deg, #1a1f35 25%, #252b45 50%, #1a1f35 75%);
+  background-size: 200%;
+  animation: shimmer 3s infinite;
+}
+
+/* Glass card */
+.glass-card {
+  background: rgba(17, 24, 39, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+/* Status badges */
+.badge-pending    { @apply bg-amber-500/20 text-amber-400 border border-amber-500/30; }
+.badge-active     { @apply bg-blue-500/20 text-blue-400 border border-blue-500/30; }
+.badge-fir        { @apply bg-purple-500/20 text-purple-400 border border-purple-500/30; }
+.badge-resolved   { @apply bg-green-500/20 text-green-400 border border-green-500/30; }
+.badge-closed     { @apply bg-gray-500/20 text-gray-400 border border-gray-500/30; }
+.badge-rejected   { @apply bg-red-500/20 text-red-400 border border-red-500/30; }
+
+/* Focus styles */
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: rgba(212, 175, 55, 0.5) !important;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+/* Print styles */
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; color: black; }
+  .print-card { border: 1px solid #ccc; padding: 20px; }
+}
