@@ -27,6 +27,6 @@
     "@types/better-sqlite3": "^7.6.8"
   },
   "engines": {
-    "node": "24.x"
+    "node": "22.x"
   }
 }
